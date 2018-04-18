@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TaskGroups from './TaskGroups';
+import TaskGroup from './TaskGroup';
 
 class TaskManager extends Component {
   constructor(props) {
@@ -66,6 +66,26 @@ class TaskManager extends Component {
     }
   }
 
+  selectGroup(name) {
+    console.log('here');
+    this.setState({
+      selectedGroup: name
+    })
+  }
+
+  renderGroupings() {
+    let groups = this.groupTasks(this.state.tasks);
+    return Object.keys(groups).map((name) => {
+      return(
+          <TaskGroup name={name}
+                     key={name}
+                     totalTaskCount={groups[name].length}
+                     completedTaskCount={0}
+                     onClick={() => this.selectGroup(name)}/>
+      )
+    })
+  }
+
   groupTasks(taskList) {
     let groupedTasks = {};
     taskList.forEach((task) => {
@@ -80,8 +100,7 @@ class TaskManager extends Component {
   render() {
     return (
           <div>
-            Test
-            <TaskGroups taskGroups={this.groupTasks(this.state.tasks)} />
+            {this.renderGroupings()}
           </div>
         )
   }
