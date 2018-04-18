@@ -9,12 +9,12 @@ class TaskGroup extends Component {
     var { name, completedTaskCount, totalTaskCount, ...props } = this.props;
     return (
           <Row key={name} {...props} className="border-bottom">
-            <Col xs={1}>
+            <Col xs={1} className="d-flex align-items-center">
               <img src={Group} />
             </Col>
             <Col xs={11} className="text-left">
-              <h6 className="mt-2 mb-0">{name}</h6>
-              <span className="mb-2 mt-0 task-count">{completedTaskCount} of {totalTaskCount} tasks complete</span>
+              <h6 className="mt-3 mb-0">{name}</h6>
+              <div className="mb-3 mt-0 task-count">{completedTaskCount} of {totalTaskCount} tasks complete</div>
             </Col>
             <hr/>
           </Row>

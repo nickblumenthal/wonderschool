@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Completed from '../assets/Completed.svg'
 import Incomplete from '../assets/Incomplete.svg'
 import Locked from '../assets/Locked.svg'
+import { Container, Row, Col } from 'reactstrap';
 
 class Task extends Component {
   constructor(props) {
@@ -22,9 +23,9 @@ class Task extends Component {
   render() {
     var { name, ...props } = this.props;
     return (
-        <div {...props}>
+        <Row {...props}>
           <img src={this.imageSrc()} /> {name}
-        </div>
+        </Row>
     )
   }
 }

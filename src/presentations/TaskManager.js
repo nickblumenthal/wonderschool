@@ -146,12 +146,18 @@ class TaskManager extends Component {
   
   render() {
     return (
-          <Row>
-            <Col>
-              <Row>Things To Do</Row>
+          <Row className="justify-content-center mt-4">
+            <Col xs={4}>
+              <Row className="border-bottom">
+                <span className="mt-3 mb-3">Things To Do</span>
+              </Row>
               {this.renderGroupings()}
             </Col>
-            <Col>
+            <Col xs={1}></Col>
+            <Col xs={4}>
+              <Row className="border-bottom">
+                <span className="mt-3 mb-3">{this.state.selectedGroup}</span>
+              </Row>
               {this.renderTasks()}
             </Col>
           </Row>
