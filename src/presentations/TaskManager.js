@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TaskGroup from './TaskGroup';
+import Task from './Task';
 
 class TaskManager extends Component {
   constructor(props) {
@@ -67,7 +68,6 @@ class TaskManager extends Component {
   }
 
   selectGroup(name) {
-    console.log('here');
     this.setState({
       selectedGroup: name
     })
@@ -97,12 +97,47 @@ class TaskManager extends Component {
     return groupedTasks;
   }
   
+  isLocked(task) {
+    let locked = false;
+    let completedIds = this.completedTaskIds();
+    let loadedIds = this.state.tasks.map((task) => task.id);
+    task.dependencyIds.forEach((dependencyId) => {
+      if(!completedIds.includes(dependencyId) && loadedIds.includes(dependencyId)) {
+        locked = true;
+      }
+    });
+    return locked;
+  }
+
+  completedTaskIds() {
+    let completed = [];
+    this.state.tasks.forEach((task) => {
+      if(!!task.completedAt) {
+        completed.push(task.id)
+      }
+    });
+    return completed;
+  }
+
+  toggleComplete(task) {
+    if(this.isLocked(task)) { return };
+    let completedAt = !task.completedAt ? Date.now() : null;
+    let newTask = Object.assign({}, task, {completedAt: completedAt});
+    let newTasks = this.state.tasks.map((oldTask) => {
+      return oldTask.id == newTask.id ? newTask : oldTask;
+    });
+    this.setState({tasks: newTasks})
+  }
+
   renderTasks() {
     if(!this.state.selectedGroup) return;
     let selectedTasks = this.groupTasks(this.state.tasks)[this.state.selectedGroup]
     return selectedTasks.map((task) => {
       return(
-          <div>{task.task}</div>
+          <Task name={task.task}
+                isLocked={this.isLocked(task)}
+                completedAt={task.completedAt}
+                onClick={() => {this.toggleComplete(task)}}/>
       )
     })
   }
