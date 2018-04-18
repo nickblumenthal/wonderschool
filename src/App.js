@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Container, Row, Col } from 'reactstrap';
 
 import TaskManager from './presentations/TaskManager'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <Container className="App">
         <TaskManager/>
-      </div>
+      </Container>
     );
   }
 }

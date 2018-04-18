@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TaskGroup from './TaskGroup';
 import Task from './Task';
+import { Container, Row, Col } from 'reactstrap';
 
 class TaskManager extends Component {
   constructor(props) {
@@ -145,10 +146,15 @@ class TaskManager extends Component {
   
   render() {
     return (
-          <div>
-            {this.renderGroupings()}
-            {this.renderTasks()}
-          </div>
+          <Row>
+            <Col>
+              <Row>Things To Do</Row>
+              {this.renderGroupings()}
+            </Col>
+            <Col>
+              {this.renderTasks()}
+            </Col>
+          </Row>
         )
   }
 }
