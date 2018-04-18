@@ -97,10 +97,21 @@ class TaskManager extends Component {
     return groupedTasks;
   }
   
+  renderTasks() {
+    if(!this.state.selectedGroup) return;
+    let selectedTasks = this.groupTasks(this.state.tasks)[this.state.selectedGroup]
+    return selectedTasks.map((task) => {
+      return(
+          <div>{task.task}</div>
+      )
+    })
+  }
+  
   render() {
     return (
           <div>
             {this.renderGroupings()}
+            {this.renderTasks()}
           </div>
         )
   }
