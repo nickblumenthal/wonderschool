@@ -8,7 +8,7 @@ class TaskGroup extends Component {
     return (
           <div key={name} {...props}>
             <h1>{name}</h1>
-            <span>X of {totalTaskCount} tasks complete</span>
+            <span>{completedTaskCount} of {totalTaskCount} tasks complete</span>
           </div>
         )
   }

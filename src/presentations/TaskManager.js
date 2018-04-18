@@ -76,11 +76,12 @@ class TaskManager extends Component {
   renderGroupings() {
     let groups = this.groupTasks(this.state.tasks);
     return Object.keys(groups).map((name) => {
+      let group = groups[name]
       return(
           <TaskGroup name={name}
                      key={name}
-                     totalTaskCount={groups[name].length}
-                     completedTaskCount={0}
+                     totalTaskCount={group.length}
+                     completedTaskCount={group.filter((task) => this.completedTaskIds().includes(task.id)).length}
                      onClick={() => this.selectGroup(name)}/>
       )
     })
