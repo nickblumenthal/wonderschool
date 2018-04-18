@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import TaskList from './TaskList';
+
 class TaskGroups extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +16,7 @@ class TaskGroups extends Component {
     })
   }
 
-  renderTaskGroups() {
+  renderGroups() {
     let groupNames = Object.keys(this.props.taskGroups);
     return groupNames.map((name) => {
       let taskCount = this.props.taskGroups[name].length;
@@ -30,7 +32,7 @@ class TaskGroups extends Component {
   renderSelectedGroup() {
     if(!this.state.selectedGroup) { return; }
     return(
-        <div>{this.state.selectedGroup}</div>
+        <TaskList tasks={this.props.taskGroups[this.state.selectedGroup]} />
     )
   }
 
@@ -38,11 +40,11 @@ class TaskGroups extends Component {
     return(
       <div>
         <h1>Things To Do</h1>
-        {this.renderTaskGroups()}
+        {this.renderGroups()}
         {this.renderSelectedGroup()}
       </div>
     );
   }
 }
 
-export default TaskGroups
+export default TaskGroups;
