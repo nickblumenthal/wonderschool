@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
-
-import TaskList from './TaskList';
 import Group from '../assets/Group.svg'
 
 class TaskGroup extends Component {

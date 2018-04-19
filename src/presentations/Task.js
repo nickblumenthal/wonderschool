@@ -46,8 +46,8 @@ class Task extends Component {
 }
 
 Task.propTypes = {
-  completedAt: PropTypes.number,
-  isLocked: PropTypes.bool,
+  completedAt: PropTypes.number.isRequired,
+  isLocked: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   onClick: PropTypes.func
 };
