@@ -4,8 +4,30 @@ body {
   font-family: sans-serif;
 }
 
+.all-groups {
+  text-transform: uppercase;
+  color: #2067ff;
+  font-size: 12px;
+}
+
 .task-count {
   color: grey;
   font-size: 12px;
   text-transform: uppercase;
+}
+
+.task-row {
+  height: 70px;
+}
+
+span.locked {
+  color: grey;
+}
+
+span.incomplete {
+
+}
+
+span.completed {
+  text-decoration: line-through;
 }
