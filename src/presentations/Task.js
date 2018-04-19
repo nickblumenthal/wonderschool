@@ -6,10 +6,6 @@ import { Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 class Task extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   imageSrc() {
     if(this.props.isLocked) {
       return Locked
@@ -35,7 +31,7 @@ class Task extends Component {
     return (
         <Row onClick={onClick} className="border-bottom task-row no-gutters task">
           <Col xs={2} className="d-flex align-items-center">
-            <img src={this.imageSrc()} />
+            <img src={this.imageSrc()} alt=""/>
           </Col>
           <Col xs={10} className="d-flex text-left align-items-center">
             <span className={this.assignClasses()}>{name}</span>
@@ -46,7 +42,7 @@ class Task extends Component {
 }
 
 Task.propTypes = {
-  completedAt: PropTypes.number.isRequired,
+  completedAt: PropTypes.number,
   isLocked: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   onClick: PropTypes.func

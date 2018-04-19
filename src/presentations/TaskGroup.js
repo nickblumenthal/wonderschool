@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 import Group from '../assets/Group.svg'
 
@@ -9,7 +9,7 @@ class TaskGroup extends Component {
     return (
           <Row key={name} {...props} className="border-bottom task-row no-gutters">
             <Col xs={1} className="d-flex align-items-center">
-              <img src={Group} />
+              <img src={Group} alt=""/>
             </Col>
             <Col xs={11} className="text-left pl-1">
               <h6 className="mt-3 mb-0">{name}</h6>

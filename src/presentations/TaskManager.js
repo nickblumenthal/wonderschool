@@ -118,7 +118,7 @@ class TaskManager extends Component {
     });
 
     return[
-        <Row className="border-bottom no-gutters">
+        <Row className="border-bottom no-gutters" key="title">
           <h5 className="mt-3 mb-3">Things To Do</h5>
         </Row>,
         taskGroups
