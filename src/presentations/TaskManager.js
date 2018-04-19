@@ -77,7 +77,7 @@ class TaskManager extends Component {
   renderGroupings() {
     let groups = this.groupTasks(this.state.tasks);
     return Object.keys(groups).map((name) => {
-      let group = groups[name]
+      let group = groups[name];
       return(
           <TaskGroup name={name}
                      key={name}
@@ -133,31 +133,40 @@ class TaskManager extends Component {
 
   renderTasks() {
     if(!this.state.selectedGroup) return;
-    let selectedTasks = this.groupTasks(this.state.tasks)[this.state.selectedGroup]
+    let selectedTasks = this.groupTasks(this.state.tasks)[this.state.selectedGroup];
     return selectedTasks.map((task) => {
       return(
           <Task name={task.task}
+                key={task.id}
                 isLocked={this.isLocked(task)}
                 completedAt={task.completedAt}
                 onClick={() => {this.toggleComplete(task)}}/>
       )
     })
   }
+
+  renderTaskGroupTitle() {
+    if(!this.state.selectedGroup) { return; }
+    return (
+        <Row className="border-bottom no-gutters align-items-center justify-content-between">
+          <h5 className="mt-3 mb-3">{this.state.selectedGroup}</h5>
+          <span className="all-groups" onClick={() => this.selectGroup(null)}>All Groups</span>
+        </Row>
+    )
+  }
   
   render() {
     return (
           <Row className="justify-content-center mt-4">
             <Col xs={4}>
-              <Row className="border-bottom">
-                <span className="mt-3 mb-3">Things To Do</span>
+              <Row className="border-bottom no-gutters">
+                <h5 className="mt-3 mb-3">Things To Do</h5>
               </Row>
               {this.renderGroupings()}
             </Col>
             <Col xs={1}></Col>
             <Col xs={4}>
-              <Row className="border-bottom">
-                <span className="mt-3 mb-3">{this.state.selectedGroup}</span>
-              </Row>
+              {this.renderTaskGroupTitle()}
               {this.renderTasks()}
             </Col>
           </Row>
@@ -165,4 +174,4 @@ class TaskManager extends Component {
   }
 }
 
-export default TaskManager
+export default TaskManager;
